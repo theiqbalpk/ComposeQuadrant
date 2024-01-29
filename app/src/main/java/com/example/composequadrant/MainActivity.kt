@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ComposeQuadrantApp()
+                    ComposeQuadrant()
                 }
             }
         }
@@ -41,41 +42,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ComposeQuadrantApp() {
-    Column(Modifier.fillMaxWidth()) {
-        Row(Modifier.weight(1f)) {
-            ComposableInfoCard(
-                title = "Text composable",
-                description = "Displays text and follows the recommended Material Design guidelines.",
-                backgroundColor = Color(0xFFEADDFF),
-                modifier = Modifier.weight(1f)
-            )
-            ComposableInfoCard(
-                title = "Image composable",
-                description = "Creates a composable that lays out and draws a given Painter class object.",
-                backgroundColor = Color(0xFFD0BCFF),
-                modifier = Modifier.weight(1f)
-            )
-        }
-        Row(Modifier.weight(1f)) {
-            ComposableInfoCard(
-                title = "Row composable",
-                description = "A layout composable that places its children in a horizontal sequence.",
-                backgroundColor = Color(0xFFB69DF8),
-                modifier = Modifier.weight(1f)
-            )
-            ComposableInfoCard(
-                title = "Column composable",
-                description = "A layout composable that places its children in a vertical sequence.",
-                backgroundColor = Color(0xFFF6EDFF),
-                modifier = Modifier.weight(1f)
-            )
-        }
-    }
-}
-
-@Composable
-fun ComposableInfoCard(
+private fun InfoCard(
     title: String,
     description: String,
     backgroundColor: Color,
@@ -93,11 +60,44 @@ fun ComposableInfoCard(
             text = title,
             modifier = Modifier.padding(bottom = 16.dp),
             fontWeight = FontWeight.Bold
-        )
+            )
         Text(
             text = description,
             textAlign = TextAlign.Justify
-        )
+            )
+    }
+}
+@Composable
+fun ComposeQuadrant() {
+    Column(Modifier.fillMaxWidth()) {
+        Row(Modifier.weight(1f)) {
+            InfoCard(
+                title = stringResource(id = R.string.first_title),
+                description = stringResource(id = R.string.first_description),
+                backgroundColor = Color(0xFFEADDFF),
+                modifier = Modifier.weight(1f)
+            )
+            InfoCard(
+                title = stringResource(id = R.string.second_title),
+                description = stringResource(id = R.string.second_description),
+                backgroundColor = Color(0xFFD0BCFF),
+                modifier = Modifier.weight(1f)
+            )
+        }
+        Row(Modifier.weight(1f)) {
+            InfoCard(
+                title = stringResource(id = R.string.third_title),
+                description = stringResource(id = R.string.third_description),
+                backgroundColor = Color(0xFFB69DF8),
+                modifier = Modifier.weight(1f)
+            )
+            InfoCard(
+                title = stringResource(id = R.string.fourth_title),
+                description = stringResource(id = R.string.fourth_description),
+                backgroundColor = Color(0xFFF6EDFF),
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
 
@@ -105,6 +105,6 @@ fun ComposableInfoCard(
 @Composable
 fun GreetingPreview() {
     ComposeQuadrantTheme {
-        ComposeQuadrantApp()
+        ComposeQuadrant()
     }
 }
